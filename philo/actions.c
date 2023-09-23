@@ -6,7 +6,7 @@
 /*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:35:37 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/21 01:27:09 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:12:50 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	take_odd_forks(t_philo *philo)
 {
-	usleep(1500);
 	pthread_mutex_lock(&philo->philo_info->fork[philo->left_fork]);
 	pthread_mutex_lock(&philo->philo_info->fork[philo->right_fork]);
 	philo_logs(philo, FORK_TAKEN);

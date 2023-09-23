@@ -6,7 +6,7 @@
 /*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:55:38 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/21 01:27:41 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:12:54 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,4 @@ void					ft_free(t_data *data);
 void					ft_delay(t_philo *philo, int waiting_time);
 void					*philo_single(void *param);
 void					philo_logs(t_philo *philo, char *message);
-
 #endif

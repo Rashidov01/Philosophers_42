@@ -6,7 +6,7 @@
 /*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:43:29 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/20 19:22:17 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:07:41 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	*philo_start(void *param)
 
 	temp_philo = (t_philo *)param;
 	temp_info = temp_philo->philo_info;
+	if (temp_philo->philo_id % 2 == 0)
+		usleep(1000);
 	while (!temp_info->finish)
 	{
 		pthread_mutex_lock(&temp_philo->philo_info->program_lock);
@@ -51,6 +53,7 @@ static void	all_eat(t_data *data)
 				pthread_mutex_unlock(&data->program_lock);
 				break ;
 			}
+			total_meals++;
 			pthread_mutex_unlock(&data->program_lock);
 		}
 		if (total_meals == data->philo_count)
@@ -103,6 +106,8 @@ int	start_program(t_data *data)
 	int	i;
 
 	i = -1;
+	if (data->die < data->eat)
+		data->eat = data->die;
 	if (data->philo_count == 1)
 		pthread_create(&data->philo[0].philo_thread, NULL, &philo_single,
 			(void *)&data->philo[0]);

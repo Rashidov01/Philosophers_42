@@ -6,7 +6,7 @@
 #    By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/16 17:56:16 by arashido          #+#    #+#              #
-#    Updated: 2023/09/20 19:13:05 by arashido         ###   ########.fr        #
+#    Updated: 2023/09/23 20:50:04 by arashido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ SRC = 	philo.c \
 		program.c \
 		philo_actions.c
 
-CC = cc -g -fsanitize=address
+CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g3
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 
