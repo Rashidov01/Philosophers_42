@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 13:38:59 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/21 13:10:05 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 01:18:33 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_philo(t_data *data)
 	int	i;
 
 	data->fork = ft_calloc(data->philo_count, (sizeof(pthread_mutex_t)));
-	pthread_mutex_init(&data->init_lock, NULL);
+	pthread_mutex_init(&data->program_lock, NULL);
 	i = -1;
 	data->philo = ft_calloc(data->philo_count, (sizeof(t_philo)));
 	while (++i < data->philo_count)

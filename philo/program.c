@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   program.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:43:29 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/23 22:07:41 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 02:25:04 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,59 +65,63 @@ static void	all_eat(t_data *data)
 	}
 }
 
-static void	death_check(t_philo *philo)
-{
-	long long	passed_time;
+static bool should_exit = false;
 
-	if (philo->philo_info->finish == false)
-	{
-		pthread_mutex_lock(&philo->philo_info->program_lock);
-		passed_time = start_time(philo->philo_info) - philo->last_meal;
-		pthread_mutex_unlock(&philo->philo_info->program_lock);
-		if (passed_time >= philo->philo_info->die)
-		{
-			philo_logs(philo, PHILO_DIED);
-			pthread_mutex_lock(&philo->philo_info->program_lock);
-			philo->philo_info->finish = true;
-			pthread_mutex_unlock(&philo->philo_info->program_lock);
-		}
-	}
+static void death_check(t_philo *philo)
+{
+    long long passed_time;
+
+    if (philo->philo_info->finish == false)
+    {
+        pthread_mutex_lock(&philo->philo_info->program_lock);
+        passed_time = start_time(philo->philo_info) - philo->last_meal;
+        pthread_mutex_unlock(&philo->philo_info->program_lock);
+        if (passed_time >= philo->philo_info->die)
+        {
+            philo_logs(philo, PHILO_DIED);
+            pthread_mutex_lock(&philo->philo_info->program_lock);
+            philo->philo_info->finish = true;
+            should_exit = true;
+            pthread_mutex_unlock(&philo->philo_info->program_lock);
+        }
+    }
 }
 
-static bool	stat_program(t_data *data)
+static void stat_program(t_data *data)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	while (data->finish == false)
-	{
-		death_check(&data->philo[i]);
-		all_eat(data);
-		usleep(1000);
-		if (i == data->philo_count - 1)
-			i = -1;
-		i++;
-	}
-	return (false);
+    i = 0;
+    while (!should_exit)
+    {
+        death_check(&data->philo[i]);
+        all_eat(data);
+        usleep(1000);
+        if (i == data->philo_count - 1)
+            i = -1;
+        i++;
+    }
 }
 
-int	start_program(t_data *data)
+int start_program(t_data *data)
 {
-	int	i;
+    int i;
 
-	i = -1;
-	if (data->die < data->eat)
-		data->eat = data->die;
-	if (data->philo_count == 1)
-		pthread_create(&data->philo[0].philo_thread, NULL, &philo_single,
-			(void *)&data->philo[0]);
-	else
-	{
-		while (++i < data->philo_count)
-			pthread_create(&data->philo[i].philo_thread, NULL, &philo_start,
-				(void *)&data->philo[i]);
-		while (!data->finish)
-			stat_program(data);
-	}
-	return (1);
+    i = -1;
+    if (data->die < data->eat)
+        data->eat = data->die;
+    if (data->philo_count == 1)
+    {
+        for (i = 0; i < data->philo_count; i++)
+            pthread_create(&data->philo[0].philo_thread, NULL, &philo_start, (void *)&data->philo[i]);
+    }
+    else
+    {
+        while (++i < data->philo_count)
+            pthread_create(&data->philo[i].philo_thread, NULL, &philo_start,
+                           (void *)&data->philo[i]);
+        while (!should_exit)
+            stat_program(data);
+    }
+    return (1);
 }

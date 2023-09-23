@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:38:11 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/21 01:24:13 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 01:16:13 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_free(t_data *data)
 	i = -1;
 	while (++i < data->philo_count)
 		pthread_mutex_destroy(&data->fork[i]);
-	pthread_mutex_destroy(&data->philo_lock);
+	pthread_mutex_destroy(&data->program_lock);
 	free(data->philo);
 	free(data->fork);
 	free(data);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/16 17:56:16 by arashido          #+#    #+#              #
-#    Updated: 2023/09/23 20:50:04 by arashido         ###   ########.fr        #
+#    Updated: 2023/09/24 02:12:58 by arashido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = 	philo.c \
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g3
+CFLAGS = -Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 

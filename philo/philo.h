@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:55:38 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/23 22:12:54 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 02:20:42 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ typedef struct s_data
 	long long			eat;
 	long long			sleep;
 	long long			start;
-	pthread_mutex_t		init_lock;
-	pthread_mutex_t		action_lock;
-	pthread_mutex_t		time_lock;
 	pthread_mutex_t		program_lock;
-	pthread_mutex_t		philo_lock;
 	pthread_mutex_t		*fork;
 	t_philo				*philo;
 }						t_data;

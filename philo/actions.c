@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:35:37 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/23 22:12:50 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 01:15:33 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	*philo_single(void *param)
 	usleep((useconds_t)temp_philo->philo_info->die * 1000);
 	pthread_mutex_unlock(&temp_philo->philo_info->fork[temp_philo->left_fork]);
 	philo_logs(temp_philo, PHILO_DIED);
-	pthread_mutex_lock(&temp_philo->philo_info->action_lock);
+	pthread_mutex_lock(&temp_philo->philo_info->program_lock);
 	temp_philo->philo_info->finish = true;
-	pthread_mutex_unlock(&temp_philo->philo_info->action_lock);
+	pthread_mutex_unlock(&temp_philo->philo_info->program_lock);
 	return (NULL);
 }
