@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
+/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 13:38:59 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 01:18:33 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:38:46 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	init_philo(t_data *data)
 		data->philo[i].right_fork = (i + 1) % data->philo_count;
 		data->philo[i].philo_info = data;
 		data->philo[i].last_meal = 0;
-		data->philo[i].holding_fork = false;
+		data->philo[i].taken_fork = false;
 	}
 }
 

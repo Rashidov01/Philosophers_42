@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
+/*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:55:38 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 02:20:42 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:38:46 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_philo
 	long long			last_meal;
 	t_data				*philo_info;
 	pthread_t			philo_thread;
-	bool				holding_fork;
+	bool				taken_fork;
 }						t_philo;
 
 long long				current_time(void);
@@ -77,5 +77,5 @@ void					*ft_calloc(size_t count, size_t size);
 void					ft_free(t_data *data);
 void					ft_delay(t_philo *philo, int waiting_time);
 void					*philo_single(void *param);
-void					philo_logs(t_philo *philo, char *message);
+void					print_message(t_philo *philo, char *message);
 #endif
