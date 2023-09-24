@@ -6,7 +6,7 @@
 /*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:43:29 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 15:41:22 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:42:10 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,6 @@ static void	all_eat(t_data *data)
 			pthread_mutex_unlock(&data->program_lock);
 		}
 	}
-}
-
-void	print_message(t_philo *philo, char *message)
-{
-	pthread_mutex_lock(&philo->philo_info->program_lock);
-	if (!philo->philo_info->finish)
-	{
-		printf("%lld %d %s", start_time(philo->philo_info), philo->philo_id,
-			message);
-		pthread_mutex_unlock(&philo->philo_info->program_lock);
-	}
-	else
-		pthread_mutex_unlock(&philo->philo_info->program_lock);
 }
 
 static void	death_check(t_philo *philo)

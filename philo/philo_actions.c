@@ -6,7 +6,7 @@
 /*   By: arashido <arashido@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:10:52 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 15:33:59 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:42:45 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,19 @@ void	philo_thinking(t_philo *philo)
 	{
 		pthread_mutex_unlock(&philo->philo_info->program_lock);
 		print_message(philo, PHILO_THINKING);
+	}
+	else
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
+}
+
+void	print_message(t_philo *philo, char *message)
+{
+	pthread_mutex_lock(&philo->philo_info->program_lock);
+	if (!philo->philo_info->finish)
+	{
+		printf("%lld %d %s", start_time(philo->philo_info), philo->philo_id,
+			message);
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
 	}
 	else
 		pthread_mutex_unlock(&philo->philo_info->program_lock);
