@@ -6,7 +6,7 @@
 /*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:10:52 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 01:39:08 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:07:29 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,25 @@ void	philo_eating(t_philo *philo)
 
 void	philo_sleeping(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->philo_info->program_lock);
 	if (!philo->philo_info->finish)
 	{
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
 		philo_logs(philo, PHILO_SLEEPING);
 		ft_delay(philo, philo->philo_info->eat);
 	}
+	else
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
 }
 
 void	philo_thinking(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->philo_info->program_lock);
 	if (!philo->philo_info->finish)
+	{
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
 		philo_logs(philo, PHILO_THINKING);
+	}
+	else
+		pthread_mutex_unlock(&philo->philo_info->program_lock);
 }

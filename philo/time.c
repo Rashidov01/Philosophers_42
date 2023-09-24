@@ -6,7 +6,7 @@
 /*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:44:27 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 01:15:41 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:45:45 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,4 @@ void	ft_delay(t_philo *philo, int waiting_time)
 		pthread_mutex_unlock(&philo->philo_info->program_lock);
 		usleep(100);
 	}
-}
-
-void	philo_logs(t_philo *philo, char *message)
-{
-	pthread_mutex_lock(&philo->philo_info->program_lock);
-	if (!philo->philo_info->finish)
-	{
-		printf("%lld %d %s", start_time(philo->philo_info), philo->philo_id,
-			message);
-		pthread_mutex_unlock(&philo->philo_info->program_lock);
-	}
-	else
-		pthread_mutex_unlock(&philo->philo_info->program_lock);
 }

@@ -6,7 +6,7 @@
 /*   By: arashido <avazbekrashidov6@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:35:37 by arashido          #+#    #+#             */
-/*   Updated: 2023/09/24 01:15:33 by arashido         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:09:33 by arashido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*philo_single(void *param)
 	temp_philo = (t_philo *)param;
 	pthread_mutex_lock(&temp_philo->philo_info->fork[temp_philo->left_fork]);
 	philo_logs(temp_philo, FORK_TAKEN);
-	usleep((useconds_t)temp_philo->philo_info->die * 1000);
+	usleep((useconds_t) temp_philo->philo_info->die * 1000);
 	pthread_mutex_unlock(&temp_philo->philo_info->fork[temp_philo->left_fork]);
 	philo_logs(temp_philo, PHILO_DIED);
 	pthread_mutex_lock(&temp_philo->philo_info->program_lock);
